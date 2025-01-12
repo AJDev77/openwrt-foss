@@ -43,8 +43,11 @@ jobs:
             - name: Generate config
               run:  sh genconfig-ipq807x.sh
 
+            - name: Pre-download
+              run: make download -j$(nproc) V=s
+
             - name: Build firmware images
-              run: make -j$(($(nproc)+1)) world
+              run: make -j$(($(nproc)+1)) V=s
 
             - name: Get SHA
               uses: benjlevesque/short-sha@v2.2
