@@ -57,16 +57,18 @@ base-commit: 12f167f02a1abe2c8817496a902de00758285b92
  
 --- a/drivers/net/wireless/ath/ath11k/mac.c
 +++ b/drivers/net/wireless/ath/ath11k/mac.c
-@@ -6048,7 +6048,7 @@
+@@ -6047,8 +6047,8 @@
+ 	return 0;
  }
  
- static void ath11k_mac_op_tx(struct ieee80211_hw *hw,
+-static void ath11k_mac_op_tx(struct ieee80211_hw *hw,
 -			     struct ieee80211_tx_control *control,
++static void ath11k_mac_tx(struct ieee80211_hw *hw,
 +			     struct ieee80211_sta *sta,
  			     struct sk_buff *skb)
  {
  	struct ath11k_skb_cb *skb_cb = ATH11K_SKB_CB(skb);
-@@ -6084,16 +6084,74 @@
+@@ -6084,8 +6084,8 @@
  		return;
  	}
  
@@ -77,11 +79,10 @@ base-commit: 12f167f02a1abe2c8817496a902de00758285b92
  
  	ret = ath11k_dp_tx(ar, arvif, arsta, skb);
  	if (unlikely(ret)) {
- 		ath11k_warn(ar->ab, "failed to transmit frame %d\n", ret);
- 		ieee80211_free_txskb(ar->hw, skb);
-+	}
-+}
-+
+@@ -6094,6 +6094,64 @@
+ 	}
+ }
+ 
 +static void ath11k_mac_schedule_txq(struct ieee80211_hw *hw, u32 ac)
 +
 +{
@@ -94,10 +95,10 @@ base-commit: 12f167f02a1abe2c8817496a902de00758285b92
 +			ath11k_mac_tx(hw, txq->sta, skb);
 +
 +		ieee80211_return_txq(hw, txq, false);
- 	}
++	}
 +	ieee80211_txq_schedule_end(hw, ac);
- }
- 
++}
++
 +void ath11k_mac_tx_push_pending(struct ath11k *ar)
 +{
 +	struct ieee80211_hw *hw = ar->hw;
