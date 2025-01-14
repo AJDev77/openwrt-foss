@@ -23,11 +23,10 @@ base-commit: 12f167f02a1abe2c8817496a902de00758285b92
 
 --- a/drivers/net/wireless/ath/ath11k/dp_tx.c
 +++ b/drivers/net/wireless/ath/ath11k/dp_tx.c
-@@ -686,12 +686,14 @@  void ath11k_dp_tx_completion_handler(struct ath11k_base *ab, int ring_id)
- 	struct ath11k *ar;
-	struct ath11k_dp *dp = &ab->dp;
-	int hal_ring_id = dp->tx_ring[ring_id].tcl_comp_ring.ring_id;
-	struct hal_srng *status_ring = &ab->hal.srng_list[hal_ring_id];
+@@ -689,12 +689,14 @@
+ 	struct ath11k_dp *dp = &ab->dp;
+ 	int hal_ring_id = dp->tx_ring[ring_id].tcl_comp_ring.ring_id;
+ 	struct hal_srng *status_ring = &ab->hal.srng_list[hal_ring_id];
 +	bool mac_id_scheduled[MAX_RADIOS];
  	struct sk_buff *msdu;
  	struct hal_tx_status ts = { 0 };
@@ -39,12 +38,12 @@ base-commit: 12f167f02a1abe2c8817496a902de00758285b92
  
  	spin_lock_bh(&status_ring->lock);
  
-@@ -751,6 +753,15 @@  void ath11k_dp_tx_completion_handler(struct ath11k_base *ab, int ring_id)
+@@ -759,7 +761,16 @@
  			wake_up(&ar->dp.tx_empty_waitq);
  
  		ath11k_dp_tx_complete_msdu(ar, msdu, &ts);
 +		mac_id_scheduled[mac_id] = true;
-+	}
+ 	}
 +
 +	/* Schedule remaining Tx packets for the radio */
 +	for (i = 0; i <  MAX_RADIOS; i++) {
@@ -52,8 +51,10 @@ base-commit: 12f167f02a1abe2c8817496a902de00758285b92
 +			continue;
 +		ar = ab->pdevs[i].ar;
 +		ath11k_mac_tx_push_pending(ar);
- 	}
++	}
  }
+ 
+ int ath11k_dp_tx_send_reo_cmd(struct ath11k_base *ab, struct dp_rx_tid *rx_tid,
  
 --- a/drivers/net/wireless/ath/ath11k/mac.c
 +++ b/drivers/net/wireless/ath/ath11k/mac.c
