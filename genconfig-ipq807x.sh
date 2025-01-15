@@ -34,8 +34,8 @@ echo CONFIG_PACKAGE_luci-app-nlbwmon=y >> .config
 echo CONFIG_PACKAGE_kmod-nft-bridge=y >> .config
 # - curl: CLI tool to transfer data with URLs. Useful for scripting, and supperior to wget.
 echo CONFIG_PACKAGE_curl=y >> .config
-echo CONFIG_LIBCURL_OPENSSL=y >> .config
-echo CONFIG_LIBCURL_MBEDTLS=n >> .config
+#echo CONFIG_LIBCURL_OPENSSL=y >> .config
+#echo CONFIG_LIBCURL_MBEDTLS=n >> .config
 # - rsync: Efficient file transfers and backups.
 echo CONFIG_PACKAGE_rsync=y >> .config
 # - jq: Parse JSON data from the command line. Useful for scripting, and WAY better than `jsonfilter`.
@@ -55,9 +55,10 @@ echo CONFIG_HTOP_LMSENSORS=n >> .config
 # Wireless Configuration
 #####################################################################
 # Enable WPA3 and Mesh support
-echo CONFIG_PACKAGE_wpad-mesh-openssl=y >> .config
+#echo CONFIG_PACKAGE_wpad-mesh-openssl=y >> .config
 # Avoid using mbedTLS for consistency across packages and to avoid mixed SSL libraries.
-echo CONFIG_PACKAGE_wpad-basic-mbedtls=n >> .config
+#echo CONFIG_PACKAGE_wpad-basic-mbedtls=n >> .config
+echo CONFIG_PACKAGE_wpad-mesh-mbedtls=y >> .config
 
 #####################################################################
 # Library Optimization
