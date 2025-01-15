@@ -18,14 +18,6 @@ echo CONFIG_TOOLCHAINOPTS=y >> .config
 echo CONFIG_TARGET_OPTIONS=y >> .config
 echo CONFIG_USE_GC_SECTIONS=y >> .config
 
-# Use OpenSSL as the preferred SSL library
-echo CONFIG_PACKAGE_libustream-openssl=y >> .config
-echo CONFIG_PACKAGE_libustream-mbedtls=n >> .config
-echo CONFIG_PACKAGE_libopenssl=y >> .config
-echo CONFIG_LUA_ECO_OPENSSL=y >> .config
-echo CONFIG_LUA_ECO_MBEDTLS=n >> .config
-# Optimize OpenSSL for speed over size
-echo CONFIG_OPENSSL_OPTIMIZE_SPEED=y >> .config
 echo CONFIG_PACKAGE_luci-app-firewall=y >> .config
 # - SQM: Smart Queue Management for bufferbloat control.
 echo CONFIG_PACKAGE_luci-app-sqm=y >> .config
