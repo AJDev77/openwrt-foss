@@ -23,7 +23,7 @@ base-commit: 12f167f02a1abe2c8817496a902de00758285b92
 
 --- a/drivers/net/wireless/ath/ath11k/dp_tx.c
 +++ b/drivers/net/wireless/ath/ath11k/dp_tx.c
-@@ -689,12 +689,14 @@
+@@ -774,12 +774,14 @@
  	struct ath11k_dp *dp = &ab->dp;
  	int hal_ring_id = dp->tx_ring[ring_id].tcl_comp_ring.ring_id;
  	struct hal_srng *status_ring = &ab->hal.srng_list[hal_ring_id];
@@ -31,7 +31,8 @@ base-commit: 12f167f02a1abe2c8817496a902de00758285b92
  	struct sk_buff *msdu;
  	struct hal_tx_status ts = { 0 };
  	struct dp_tx_ring *tx_ring = &dp->tx_ring[ring_id];
- 	u32 *desc;
+ 	int valid_entries;
+	u32 *desc;
  	u32 msdu_id;
  	u8 mac_id;
 +	int i;
