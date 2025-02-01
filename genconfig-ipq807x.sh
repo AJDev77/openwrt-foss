@@ -12,80 +12,80 @@ echo CONFIG_TARGET_PROFILE="DEVICE_linksys_mx4300" >> .config
 #####################################################################
 # Compiler Optimization
 #####################################################################
-CONFIG_BUILD_PATENTED=y >> .config
-CONFIG_DEVEL=y >> .config
-CONFIG_EXPERIMENTAL=y >> .config
-CONFIG_TOOLCHAINOPTS=y >> .config
-CONFIG_TARGET_OPTIONS=y >> .config
-CONFIG_TARGET_OPTIMIZATION="-O2 -pipe -mcpu=cortex-a53+crc+crypto" >> .config
-CONFIG_USE_GC_SECTIONS=y >> .config
+echo CONFIG_BUILD_PATENTED=y >> .config
+echo CONFIG_DEVEL=y >> .config
+echo CONFIG_EXPERIMENTAL=y >> .config
+echo CONFIG_TOOLCHAINOPTS=y >> .config
+echo CONFIG_TARGET_OPTIONS=y >> .config
+echo CONFIG_TARGET_OPTIMIZATION="-O2 -pipe -mcpu=cortex-a53+crc+crypto" >> .config
+echo CONFIG_USE_GC_SECTIONS=y >> .config
 
 
 # Kernel Config
-CONFIG_COLLECT_KERNEL_DEBUG=y >> .config
-CONFIG_KERNEL_PERF_EVENTS=y >> .config
-CONFIG_KERNEL_DYNAMIC_DEBUG=y >> .config
-CONFIG_KERNEL_ARM_PMU=y >> .config
-CONFIG_KERNEL_ARM_PMUV3=y >> .config
-CONFIG_KERNEL_PREEMPT_NONE=y >> .config
-CONFIG_KERNEL_PREEMPT_NONE_BUILD=y >> .config
+echo CONFIG_COLLECT_KERNEL_DEBUG=y >> .config
+echo CONFIG_KERNEL_PERF_EVENTS=y >> .config
+echo CONFIG_KERNEL_DYNAMIC_DEBUG=y >> .config
+echo CONFIG_KERNEL_ARM_PMU=y >> .config
+echo CONFIG_KERNEL_ARM_PMUV3=y >> .config
+echo CONFIG_KERNEL_PREEMPT_NONE=y >> .config
+echo CONFIG_KERNEL_PREEMPT_NONE_BUILD=y >> .config
 
 # Reduce kernel module size
 # Disable unnecessary debugging for Wi-Fi driver.
-CONFIG_ATH11K_DEBUGFS_HTT_STATS=n >> .config
-CONFIG_ATH11K_DEBUGFS_STA=n >> .config
+echo CONFIG_ATH11K_DEBUGFS_HTT_STATS=n >> .config
+echo CONFIG_ATH11K_DEBUGFS_STA=n >> .config
 # Disables thermal throttling support for ath11k.
-CONFIG_ATH11K_THERMAL=n >> .config
+echo CONFIG_ATH11K_THERMAL=n >> .config
 
 #####################################################################
 # SSL Configuration
 #####################################################################
 # Use OpenSSL as the preferred SSL library
-CONFIG_PACKAGE_libustream-openssl=y >> .config
-CONFIG_PACKAGE_libustream-mbedtls=n >> .config
-CONFIG_PACKAGE_libopenssl=y >> .config
-CONFIG_LUA_ECO_OPENSSL=y >> .config
-CONFIG_LUA_ECO_MBEDTLS=n >> .config
+echo CONFIG_PACKAGE_libustream-openssl=y >> .config
+echo CONFIG_PACKAGE_libustream-mbedtls=n >> .config
+echo CONFIG_PACKAGE_libopenssl=y >> .config
+echo CONFIG_LUA_ECO_OPENSSL=y >> .config
+echo CONFIG_LUA_ECO_MBEDTLS=n >> .config
 # Optimize OpenSSL for speed over size
-CONFIG_OPENSSL_OPTIMIZE_SPEED=y >> .config
+echo CONFIG_OPENSSL_OPTIMIZE_SPEED=y >> .config
 
 #####################################################################
 # Wireless Configuration
 #####################################################################
 # Enable WPA3 and Mesh support
-CONFIG_PACKAGE_wpad-mesh-openssl=y >> .config
+echo CONFIG_PACKAGE_wpad-mesh-openssl=y >> .config
 # Avoid using mbedTLS for consistency across packages and to avoid mixed SSL libraries.
-CONFIG_PACKAGE_wpad-basic-mbedtls=n >> .config
+echo CONFIG_PACKAGE_wpad-basic-mbedtls=n >> .config
 
 #####################################################################
 # Library Optimization
 #####################################################################
 # Optimize common libraries (zlib, zstd) for speed, improving performance on compression tasks.
-CONFIG_ZLIB_OPTIMIZE_SPEED=y >> .config
-CONFIG_ZSTD_OPTIMIZE_O3=y >> .config
+echo CONFIG_ZLIB_OPTIMIZE_SPEED=y >> .config
+echo CONFIG_ZSTD_OPTIMIZE_O3=y >> .config
 
 # --- Essential Packages ---
 
 #####################################################################
 # LUCI (the web interface)
 #####################################################################
-CONFIG_PACKAGE_luci=y >> .config
+echo CONFIG_PACKAGE_luci=y >> .config
 # Enable HTTPS support
-CONFIG_PACKAGE_luci-ssl-openssl=y >> .config
+echo CONFIG_PACKAGE_luci-ssl-openssl=y >> .config
 
 #####################################################################
 # LUCI Applications
 #####################################################################
 # - Firewall: Manage firewall rules via LUCI.
-CONFIG_PACKAGE_luci-app-firewall=y >> .config
+echo CONFIG_PACKAGE_luci-app-firewall=y >> .config
 # - Package manager for OpenWRT, manage installed packages via LUCI.
-CONFIG_PACKAGE_luci-app-package-manager=y >> .config
+echo CONFIG_PACKAGE_luci-app-package-manager=y >> .config
 
 # - iperf3: CLI tool to measure network performance.
 #           This is essential to test WiFi speeds,
 #           as posting speedtest.net results is useless
 #           without knowing the network conditions.
-CONFIG_PACKAGE_iperf3=y >> .config
+echo CONFIG_PACKAGE_iperf3=y >> .config
 
 # --- Optional Packages --- #
 
@@ -98,61 +98,61 @@ CONFIG_PACKAGE_iperf3=y >> .config
 #####################################################################
 
 # - SQM: Smart Queue Management for bufferbloat control.
-CONFIG_PACKAGE_luci-app-sqm=y >> .config
+echo CONFIG_PACKAGE_luci-app-sqm=y >> .config
 # - Statistics: Monitor your router’s performance (CPU, memory, bandwidth).
-CONFIG_PACKAGE_luci-app-statistics=y >> .config
+echo CONFIG_PACKAGE_luci-app-statistics=y >> .config
 # - Watchcat: Automate reboots on connection loss.
-CONFIG_PACKAGE_luci-app-watchcat=y >> .config
+echo CONFIG_PACKAGE_luci-app-watchcat=y >> .config
 # - WireGuard: VPN support. Will also select the kernel module.
-CONFIG_PACKAGE_luci-proto-wireguard=y >> .config
+echo CONFIG_PACKAGE_luci-proto-wireguard=y >> .config
 # - NLBWMon: Network usage monitoring to track bandwidth by host.
-CONFIG_PACKAGE_luci-app-nlbwmon=y >> .config
+echo CONFIG_PACKAGE_luci-app-nlbwmon=y >> .config
 
 #####################################################################
 # Kernel Modules
 #####################################################################
 # Filesystem support for USB storage:
 # FAT32: Useful to load recovery or new images that can be booted by u-boot
-CONFIG_PACKAGE_kmod-fs-vfat=y >> .config
+echo CONFIG_PACKAGE_kmod-fs-vfat=y >> .config
 # NTFS: Mostly useful for Windows users.
-CONFIG_PACKAGE_kmod-fs-ntfs3=y >> .config
+echo CONFIG_PACKAGE_kmod-fs-ntfs3=y >> .config
 
 # Network
 # Bridge module support for working with nftables for more complex firewall setups.
-CONFIG_PACKAGE_kmod-nft-bridge=y >> .config
+echo CONFIG_PACKAGE_kmod-nft-bridge=y >> .config
 
 # USB Storage
 # NOTE: Not all IPQ807x devices have USB ports, so this is optional.
-CONFIG_PACKAGE_kmod-usb-storage=y >> .config
+echo CONFIG_PACKAGE_kmod-usb-storage=y >> .config
 
 # Logging/Debugging
 
 # ramoops: kernel module that logs crashes to RAM which can be read after a reboot.
 # Check '/sys/fs/pstore' for logs after a crash.
-CONFIG_PACKAGE_kmod-ramoops=y >> .config
+echo CONFIG_PACKAGE_kmod-ramoops=y >> .config
 
 #####################################################################
 # Packages
 #####################################################################
 
 # - curl: CLI tool to transfer data with URLs. Useful for scripting, and supperior to wget.
-CONFIG_PACKAGE_curl=y >> .config
-CONFIG_LIBCURL_OPENSSL=y >> .config
-CONFIG_LIBCURL_MBEDTLS=n >> .config
+echo CONFIG_PACKAGE_curl=y >> .config
+echo CONFIG_LIBCURL_OPENSSL=y >> .config
+echo CONFIG_LIBCURL_MBEDTLS=n >> .config
 # - rsync: Efficient file transfers and backups.
-CONFIG_PACKAGE_rsync=y >> .config
+echo CONFIG_PACKAGE_rsync=y >> .config
 # - jq: Parse JSON data from the command line. Useful for scripting, and WAY better than `jsonfilter`.
-CONFIG_PACKAGE_jq=y >> .config
+echo CONFIG_PACKAGE_jq=y >> .config
 # - pigz: Parallel gzip for faster compression.
-CONFIG_PACKAGE_pigz=y >> .config
+echo CONFIG_PACKAGE_pigz=y >> .config
 # - tar: Archiving utility. The default busybox tar is very limited.
-CONFIG_PACKAGE_tar=y >> .config
+echo CONFIG_PACKAGE_tar=y >> .config
 # - tcpdump: Capture and analyze network traffic.
-CONFIG_PACKAGE_tcpdump=y >> .config
+echo CONFIG_PACKAGE_tcpdump=y >> .config
 # - htop: CLI tool to monitor system resource usage.
-CONFIG_PACKAGE_htop=y >> .config
+echo CONFIG_PACKAGE_htop=y >> .config
 # lm-sensors isn't needed for IPQ807x devices.
-CONFIG_HTOP_LMSENSORS=n >> .config
+echo CONFIG_HTOP_LMSENSORS=n >> .config
 
 cat .config
 make defconfig
