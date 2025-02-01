@@ -19,6 +19,7 @@ echo CONFIG_TOOLCHAINOPTS=y >> .config
 echo CONFIG_TARGET_OPTIONS=y >> .config
 echo CONFIG_TARGET_OPTIMIZATION=\"-O2 -pipe -mcpu=cortex-a53+crc+crypto\" >> .config
 echo CONFIG_USE_GC_SECTIONS=y >> .config
+echo CONFIG_ALL_KMODS=n >> .config
 
 
 # Kernel Config
