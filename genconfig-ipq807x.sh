@@ -4,7 +4,7 @@ arch=qualcommax
 target=ipq807x
 version=releases/24.10.0-rc7
 wget https://downloads.openwrt.org/${version}/targets/${arch}/${target}/config.buildinfo -O config.buildinfo
-cat config.buildinfo | grep -v CONFIG_TARGET_DEVICE_ | grep -v CONFIG_TARGET_ALL_PROFILES | grep -v CONFIG_TARGET_MULTI_PROFILE > .config
+cat config.buildinfo | grep -v CONFIG_TARGET_DEVICE_ | grep -v CONFIG_TARGET_ALL_PROFILES | grep -v CONFIG_ALL_KMODS | grep -v CONFIG_TARGET_MULTI_PROFILE > .config
 echo CONFIG_TARGET_DEVICE_qualcommax_ipq807x_DEVICE_linksys_mx4300=y >> .config
 echo CONFIG_TARGET_qualcommax_ipq807x_DEVICE_linksys_mx4300=y >> .config
 echo CONFIG_TARGET_PROFILE=\"DEVICE_linksys_mx4300\" >> .config
@@ -107,6 +107,7 @@ echo CONFIG_PACKAGE_luci-app-watchcat=y >> .config
 echo CONFIG_PACKAGE_luci-proto-wireguard=y >> .config
 # - NLBWMon: Network usage monitoring to track bandwidth by host.
 echo CONFIG_PACKAGE_luci-app-nlbwmon=y >> .config
+echo CONFIG_PACKAGE_socat=y >> .config
 
 #####################################################################
 # Kernel Modules
