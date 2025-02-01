@@ -7,7 +7,7 @@ wget https://downloads.openwrt.org/${version}/targets/${arch}/${target}/config.b
 cat config.buildinfo | grep -v CONFIG_TARGET_DEVICE_ | grep -v CONFIG_TARGET_ALL_PROFILES | grep -v CONFIG_TARGET_MULTI_PROFILE > .config
 echo CONFIG_TARGET_DEVICE_qualcommax_ipq807x_DEVICE_linksys_mx4300=y >> .config
 echo CONFIG_TARGET_qualcommax_ipq807x_DEVICE_linksys_mx4300=y >> .config
-echo CONFIG_TARGET_PROFILE="DEVICE_linksys_mx4300" >> .config
+echo CONFIG_TARGET_PROFILE=\"DEVICE_linksys_mx4300\" >> .config
 
 #####################################################################
 # Compiler Optimization
@@ -17,7 +17,7 @@ echo CONFIG_DEVEL=y >> .config
 echo CONFIG_EXPERIMENTAL=y >> .config
 echo CONFIG_TOOLCHAINOPTS=y >> .config
 echo CONFIG_TARGET_OPTIONS=y >> .config
-echo CONFIG_TARGET_OPTIMIZATION="-O2 -pipe -mcpu=cortex-a53+crc+crypto" >> .config
+echo CONFIG_TARGET_OPTIMIZATION=\"-O2 -pipe -mcpu=cortex-a53+crc+crypto\" >> .config
 echo CONFIG_USE_GC_SECTIONS=y >> .config
 
 
