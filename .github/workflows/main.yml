@@ -51,7 +51,7 @@ jobs:
               run: make download -j$(nproc) V=s
 
             - name: Build firmware images
-              run: make -j$(($(nproc)+1)) V=s
+              run: make -j5 V=s
 
             - name: Get SHA
               uses: benjlevesque/short-sha@v2.2
