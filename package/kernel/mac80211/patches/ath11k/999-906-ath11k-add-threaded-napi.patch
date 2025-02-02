@@ -1,0 +1,24 @@
+Index: backports-6.12.6/drivers/net/wireless/ath/ath11k/ahb.c
+===================================================================
+--- backports-6.12.6.orig/drivers/net/wireless/ath/ath11k/ahb.c
++++ backports-6.12.6/drivers/net/wireless/ath/ath11k/ahb.c
+@@ -378,6 +378,7 @@ static void ath11k_ahb_ext_irq_enable(st
+ 		struct ath11k_ext_irq_grp *irq_grp = &ab->ext_irq_grp[i];
+ 
+ 		if (!irq_grp->napi_enabled) {
++			dev_set_threaded(&irq_grp->napi_ndev, true);
+ 			napi_enable(&irq_grp->napi);
+ 			irq_grp->napi_enabled = true;
+ 		}
+Index: backports-6.12.6/drivers/net/wireless/ath/ath11k/pcic.c
+===================================================================
+--- backports-6.12.6.orig/drivers/net/wireless/ath/ath11k/pcic.c
++++ backports-6.12.6/drivers/net/wireless/ath/ath11k/pcic.c
+@@ -476,6 +476,7 @@ void ath11k_pcic_ext_irq_enable(struct a
+ 		struct ath11k_ext_irq_grp *irq_grp = &ab->ext_irq_grp[i];
+ 
+ 		if (!irq_grp->napi_enabled) {
++			dev_set_threaded(&irq_grp->napi_ndev, true);
+ 			napi_enable(&irq_grp->napi);
+ 			irq_grp->napi_enabled = true;
+ 		}
