@@ -1,7 +1,5 @@
-Index: backports-6.12.6/drivers/net/wireless/ath/ath11k/mac.c
-===================================================================
---- backports-6.12.6.orig/drivers/net/wireless/ath/ath11k/mac.c
-+++ backports-6.12.6/drivers/net/wireless/ath/ath11k/mac.c
+--- a/drivers/net/wireless/ath/ath11k/mac.c
++++ b/drivers/net/wireless/ath/ath11k/mac.c
 @@ -10233,6 +10233,7 @@ static int __ath11k_mac_register(struct
  	ieee80211_hw_set(ar->hw, QUEUE_CONTROL);
  	ieee80211_hw_set(ar->hw, SUPPORTS_TX_FRAG);
