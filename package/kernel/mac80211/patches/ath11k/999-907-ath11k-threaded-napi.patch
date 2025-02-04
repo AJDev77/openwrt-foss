@@ -1,7 +1,5 @@
-Index: backports-6.12.6/drivers/net/wireless/ath/ath11k/ahb.c
-===================================================================
---- backports-6.12.6.orig/drivers/net/wireless/ath/ath11k/ahb.c
-+++ backports-6.12.6/drivers/net/wireless/ath/ath11k/ahb.c
+--- a/drivers/net/wireless/ath/ath11k/ahb.c
++++ b/drivers/net/wireless/ath/ath11k/ahb.c
 @@ -542,6 +542,8 @@ static int ath11k_ahb_config_ext_irq(str
  		netif_napi_add(irq_grp->napi_ndev, &irq_grp->napi,
  			       ath11k_ahb_ext_grp_napi_poll);
@@ -11,10 +9,9 @@ Index: backports-6.12.6/drivers/net/wireless/ath/ath11k/ahb.c
  		for (j = 0; j < ATH11K_EXT_IRQ_NUM_MAX; j++) {
  			if (ab->hw_params.ring_mask->tx[i] & BIT(j)) {
  				irq_grp->irqs[num_irq++] =
-Index: backports-6.12.6/drivers/net/wireless/ath/ath11k/pcic.c
-===================================================================
---- backports-6.12.6.orig/drivers/net/wireless/ath/ath11k/pcic.c
-+++ backports-6.12.6/drivers/net/wireless/ath/ath11k/pcic.c
+
+--- a/drivers/net/wireless/ath/ath11k/pcic.c
++++ b/drivers/net/wireless/ath/ath11k/pcic.c
 @@ -589,6 +589,8 @@ static int ath11k_pcic_ext_irq_config(st
  		netif_napi_add(irq_grp->napi_ndev, &irq_grp->napi,
  			       ath11k_pcic_ext_grp_napi_poll);
