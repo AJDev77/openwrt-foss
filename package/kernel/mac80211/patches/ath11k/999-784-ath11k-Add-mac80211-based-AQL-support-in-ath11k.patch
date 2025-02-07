@@ -31,6 +31,7 @@ base-commit: 12f167f02a1abe2c8817496a902de00758285b92
  	struct sk_buff *msdu;
  	struct hal_tx_status ts = { 0 };
  	struct dp_tx_ring *tx_ring = &dp->tx_ring[ring_id];
+ 	int valid_entries;
  	u32 *desc;
  	u32 msdu_id;
  	u8 mac_id;
