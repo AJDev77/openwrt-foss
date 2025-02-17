@@ -58,12 +58,12 @@
 +config SKB_RECYCLER_MULTI_CPU
 +	bool "Cross-CPU recycling for CPU-locked workloads"
 +	depends on SMP && SKB_RECYCLER
-+	default n
++	default y
 +
 +config SKB_RECYCLER_PREALLOC
 +	bool "Enable preallocation of SKBs"
 +	depends on SKB_RECYCLER
-+	default n
++	default y
 +	help
 +	 Preallocates SKBs in recycling lists and the number of
 +	 SKBs are configured through CONFIG_SKB_RECYCLE_MAX_PREALLOC_SKBS.
