@@ -207,3 +207,5 @@ CONFIG_PACKAGE_tcpdump=y
 CONFIG_PACKAGE_htop=y
 # lm-sensors isn't needed for IPQ807x devices.
 CONFIG_HTOP_LMSENSORS=n
+CONFIG_PACKAGE_socat=y
+CONFIG_PACKAGE_ethtool=y
