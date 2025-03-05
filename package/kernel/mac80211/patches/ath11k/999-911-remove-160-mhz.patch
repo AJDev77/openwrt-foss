@@ -1,0 +1,33 @@
+--- a/drivers/net/wireless/ath/ath11k/mac.c
++++ b/drivers/net/wireless/ath/ath11k/mac.c
+@@ -2351,7 +2351,7 @@ static void ath11k_peer_assoc_h_he(struc
+ 	u32 rx_nss, tx_nss, nss_160;
+ 	u8 ampdu_factor, rx_mcs_80, rx_mcs_160;
+ 	u16 mcs_160_map, mcs_80_map;
+-	bool support_160;
++	bool support_160 = false;
+ 
+ 	if (WARN_ON(ath11k_mac_vif_chan(vif, &def)))
+ 		return;
+@@ -2367,8 +2367,6 @@ static void ath11k_peer_assoc_h_he(struc
+ 		return;
+ 
+ 	arg->he_flag = true;
+-	support_160 = !!(he_cap->he_cap_elem.phy_cap_info[0] &
+-		  IEEE80211_HE_PHY_CAP0_CHANNEL_WIDTH_SET_160MHZ_IN_5G);
+ 
+ 	/* Supported HE-MCS and NSS Set of peer he_cap is intersection with self he_cp */
+ 	mcs_160_map = le16_to_cpu(he_cap->he_mcs_nss_supp.rx_mcs_160);
+@@ -5761,6 +5759,12 @@ static int ath11k_mac_copy_he_cap(struct
+ 
+ 		he_cap_elem->mac_cap_info[1] &=
+ 			IEEE80211_HE_MAC_CAP1_TF_MAC_PAD_DUR_MASK;
++		
++		he_cap_elem->phy_cap_info[0] &=
++			~IEEE80211_HE_PHY_CAP0_CHANNEL_WIDTH_SET_160MHZ_IN_5G;
++
++		he_cap_elem->phy_cap_info[0] &=
++			~IEEE80211_HE_PHY_CAP0_CHANNEL_WIDTH_SET_80PLUS80_MHZ_IN_5G;
+ 
+ 		he_cap_elem->phy_cap_info[5] &=
+ 			~IEEE80211_HE_PHY_CAP5_BEAMFORMEE_NUM_SND_DIM_UNDER_80MHZ_MASK;
