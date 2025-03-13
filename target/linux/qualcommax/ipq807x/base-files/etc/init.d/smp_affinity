@@ -85,18 +85,18 @@ enable_affinity_ipq807x() {
 
   # assign 4 rx interrupts to each core
   set_affinity 'reo2host-destination-ring1'    0
-  set_affinity 'reo2host-destination-ring2'    1
-  set_affinity 'reo2host-destination-ring3'    2
-  set_affinity 'reo2host-destination-ring4'    3
+  set_affinity 'reo2host-destination-ring2'    0
+  set_affinity 'reo2host-destination-ring3'    0
+  set_affinity 'reo2host-destination-ring4'    0
 
   # assign 3 tcl completions to last 3 CPUs
-  set_affinity 'wbm2host-tx-completions-ring1' 1
-  set_affinity 'wbm2host-tx-completions-ring2' 2
+  set_affinity 'wbm2host-tx-completions-ring1' 3
+  set_affinity 'wbm2host-tx-completions-ring2' 3
   set_affinity 'wbm2host-tx-completions-ring3' 3
 
   # assign 3 ppdu mac interrupts to last 3 cores
-  set_affinity 'ppdu-end-interrupts-mac1'      1
-  set_affinity 'ppdu-end-interrupts-mac2'      2
+  set_affinity 'ppdu-end-interrupts-mac1'      3
+  set_affinity 'ppdu-end-interrupts-mac2'      3
   set_affinity 'ppdu-end-interrupts-mac3'      3
 
   # assign 4 lan/wan to core 4
