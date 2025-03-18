@@ -1,0 +1,49 @@
+Index: backports-6.12.6/drivers/net/wireless/ath/ath11k/Makefile
+===================================================================
+--- backports-6.12.6.orig/drivers/net/wireless/ath/ath11k/Makefile
++++ backports-6.12.6/drivers/net/wireless/ath/ath11k/Makefile
+@@ -21,7 +21,7 @@ ath11k-y += core.o \
+ 	    fw.o \
+ 	    p2p.o
+ 
+-ath11k-$(CPTCFG_ATH11K_DEBUGFS) += debugfs.o debugfs_htt_stats.o debugfs_sta.o
++ath11k-$(CPTCFG_ATH11K_DEBUGFS) += debugfs.o debugfs_htt_stats.o debugfs_sta.o debug_smart_ant.o
+ ath11k-$(CPTCFG_NL80211_TESTMODE) += testmode.o
+ ath11k-$(CPTCFG_ATH11K_TRACING) += trace.o
+ ath11k-$(CPTCFG_ATH11K_THERMAL) += thermal.o
+Index: backports-6.12.6/drivers/net/wireless/ath/ath11k/core.h
+===================================================================
+--- backports-6.12.6.orig/drivers/net/wireless/ath/ath11k/core.h
++++ backports-6.12.6/drivers/net/wireless/ath/ath11k/core.h
+@@ -627,6 +627,7 @@ struct ath11k_debug {
+ 	u32 mem_offset;
+ 	u32 module_id_bitmap[MAX_MODULE_ID_BITMAP_WORDS];
+ 	struct ath11k_debug_dbr *dbr_debug[WMI_DIRECT_BUF_MAX];
++	struct dentry *debugfs_smartant;
+ };
+ 
+ struct ath11k_per_peer_tx_stats {
+Index: backports-6.12.6/drivers/net/wireless/ath/ath11k/debugfs.c
+===================================================================
+--- backports-6.12.6.orig/drivers/net/wireless/ath/ath11k/debugfs.c
++++ backports-6.12.6/drivers/net/wireless/ath/ath11k/debugfs.c
+@@ -1608,6 +1608,7 @@ int ath11k_debugfs_register(struct ath11
+ 	ath11k_debugfs_htt_stats_init(ar);
+ 
+ 	ath11k_debugfs_fw_stats_init(ar);
++	ath11k_smart_ant_debugfs_init(ar);
+ 
+ 	debugfs_create_file("ext_tx_stats", 0644,
+ 			    ar->debug.debugfs_pdev, ar,
+Index: backports-6.12.6/drivers/net/wireless/ath/ath11k/debugfs.h
+===================================================================
+--- backports-6.12.6.orig/drivers/net/wireless/ath/ath11k/debugfs.h
++++ backports-6.12.6/drivers/net/wireless/ath/ath11k/debugfs.h
+@@ -273,6 +273,7 @@ void ath11k_debugfs_unregister(struct at
+ void ath11k_debugfs_fw_stats_process(struct ath11k *ar, struct ath11k_fw_stats *stats);
+ 
+ void ath11k_debugfs_fw_stats_init(struct ath11k *ar);
++void ath11k_smart_ant_debugfs_init(struct ath11k *ar);
+ int ath11k_debugfs_get_fw_stats(struct ath11k *ar, u32 pdev_id,
+ 				u32 vdev_id, u32 stats_id);
+ 
