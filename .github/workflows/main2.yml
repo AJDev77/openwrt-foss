@@ -41,6 +41,9 @@ jobs:
             - name: Update feeds
               run:  scripts/feeds update -a && scripts/feeds install -a
 
+            - name: Move Luci patch for QAM-256
+              run: mkdir feeds/luci/modules/luci-mod-network/patches/ && mv 001-luci-vht.patch feeds/luci/modules/luci-mod-network/patches/ && ls feeds/luci/modules/luci-mod-network/patches/
+
             - name: Generate config
               run:  cp config-seed.seed .config
 
