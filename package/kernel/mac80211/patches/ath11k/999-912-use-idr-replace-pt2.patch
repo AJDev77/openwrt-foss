@@ -1,0 +1,18 @@
+--- a/drivers/net/wireless/ath/ath11k/dp_rx.c
++++ b/drivers/net/wireless/ath/ath11k/dp_rx.c
+@@ -390,8 +390,13 @@ int ath11k_dp_rxbufs_replenish(struct at
+ 			goto fail_free_skb;
+ 
+ 		spin_lock_bh(&rx_ring->idr_lock);
+-		buf_id = idr_alloc(&rx_ring->bufs_idr, skb, 1,
+-				   (rx_ring->bufs_max * 3) + 1, GFP_ATOMIC);
++		if (buf_ids && buf_id_index) {
++			buf_id_index--;
++			buf_id = buf_ids[buf_id_index];
++			idr_replace(&rx_ring->bufs_idr, skb, buf_id);
++		} else {
++			buf_id = idr_alloc(&rx_ring->bufs_idr, skb, 1, (rx_ring->bufs_max * 3) + 1, GFP_ATOMIC);
++		}
+ 		spin_unlock_bh(&rx_ring->idr_lock);
+ 		if (buf_id <= 0)
+ 			goto fail_dma_unmap;
