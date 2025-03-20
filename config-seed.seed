@@ -89,6 +89,7 @@ CONFIG_KERNEL_ARM_PMU=y
 CONFIG_KERNEL_ARM_PMUV3=y
 CONFIG_KERNEL_PREEMPT_NONE=y
 CONFIG_KERNEL_PREEMPT_NONE_BUILD=y
+CONFIG_PCPU_DEV_REFCNT=y
 
 # Reduce kernel module size
 # Disable unnecessary debugging for Wi-Fi driver.
@@ -157,8 +158,6 @@ CONFIG_PACKAGE_iperf3=y
 
 # - SQM: Smart Queue Management for bufferbloat control.
 CONFIG_PACKAGE_luci-app-sqm=y
-# - Statistics: Monitor your router’s performance (CPU, memory, bandwidth).
-CONFIG_PACKAGE_luci-app-statistics=y
 # - Watchcat: Automate reboots on connection loss.
 CONFIG_PACKAGE_luci-app-watchcat=y
 # - NLBWMon: Network usage monitoring to track bandwidth by host.
