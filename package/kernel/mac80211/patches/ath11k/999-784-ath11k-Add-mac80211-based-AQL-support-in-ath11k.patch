@@ -141,7 +141,6 @@ base-commit: 12f167f02a1abe2c8817496a902de00758285b92
 +	ath11k_mac_tx(hw, control->sta, skb);
 +}
 +
-+
  void ath11k_mac_drain_tx(struct ath11k *ar)
  {
  	/* make sure rcu-protected mac80211 tx path itself is drained */
