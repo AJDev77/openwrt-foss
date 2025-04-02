@@ -175,7 +175,6 @@ base-commit: 12f167f02a1abe2c8817496a902de00758285b92
 --- a/drivers/net/wireless/ath/ath11k/mac.h
 +++ b/drivers/net/wireless/ath/ath11k/mac.h
 @@ -175,4 +175,5 @@  int ath11k_mac_wait_tx_complete(struct ath11k *ar);
- int ath11k_mac_vif_set_keepalive(struct ath11k_vif *arvif,
  				 enum wmi_sta_keepalive_method method,
  				 u32 interval);
 +void ath11k_mac_tx_push_pending(struct ath11k *ar);
