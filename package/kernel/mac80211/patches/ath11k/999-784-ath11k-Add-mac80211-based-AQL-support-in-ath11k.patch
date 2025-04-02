@@ -80,12 +80,11 @@ base-commit: 12f167f02a1abe2c8817496a902de00758285b92
  
  	ret = ath11k_dp_tx(ar, arvif, arsta, skb);
  	if (unlikely(ret)) {
-@@ -6094,6 +6094,64 @@
+@@ -6094,6 +6094,62 @@
  	}
  }
  
 +static void ath11k_mac_schedule_txq(struct ieee80211_hw *hw, u32 ac)
-+
 +{
 +	struct ieee80211_txq *txq;
 +	struct sk_buff *skb;
