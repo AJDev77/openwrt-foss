@@ -154,14 +154,6 @@ base-commit: 12f167f02a1abe2c8817496a902de00758285b92
  	.start                          = ath11k_mac_op_start,
  	.stop                           = ath11k_mac_op_stop,
  	.reconfig_complete              = ath11k_mac_op_reconfig_complete,
-@@ -10126,6 +10184,7 @@
- 	ieee80211_hw_set(ar->hw, SUPPORTS_TX_FRAG);
- 	ieee80211_hw_set(ar->hw, REPORTS_LOW_ACK);
- 
-+
- 	if (ath11k_frame_mode == ATH11K_HW_TXRX_ETHERNET) {
- 		ieee80211_hw_set(ar->hw, SUPPORTS_TX_ENCAP_OFFLOAD);
- 		ieee80211_hw_set(ar->hw, SUPPORTS_RX_DECAP_OFFLOAD);
 @@ -10252,6 +10311,8 @@
  	    ab->hw_params.bios_sar_capa)
  		ar->hw->wiphy->sar_capa = ab->hw_params.bios_sar_capa;
@@ -174,7 +166,7 @@ base-commit: 12f167f02a1abe2c8817496a902de00758285b92
 
 --- a/drivers/net/wireless/ath/ath11k/mac.h
 +++ b/drivers/net/wireless/ath/ath11k/mac.h
-@@ -175,4 +175,5 @@  int ath11k_mac_wait_tx_complete(struct ath11k *ar);
+@@ -176,6 +176,7 @@ int ath11k_mac_wait_tx_complete(struct a
  int ath11k_mac_vif_set_keepalive(struct ath11k_vif *arvif,
  				 enum wmi_sta_keepalive_method method,
  				 u32 interval);
