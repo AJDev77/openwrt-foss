@@ -122,7 +122,7 @@ Signed-off-by: Aditya Kumar Singh <quic_adisi@quicinc.com>
 +		}
 +
 +		spin_lock_bh(&ar->data_lock);
-+		pdev = list_first_entry_or_null(&ar->fw_stats_pdevs,
++		pdev = list_first_entry_or_null(&ar->fw_stats.pdevs,
 +						struct ath11k_fw_stats_pdev,
 +						list);
 +		if (!pdev) {
