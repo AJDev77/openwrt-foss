@@ -67,7 +67,7 @@ Signed-off-by: Aditya Kumar Singh <quic_adisi@quicinc.com>
 +		return -EOPNOTSUPP;
 +
 +	mgmt = (struct ieee80211_mgmt *)hdr;
-+	buf = &mgmt->u.action;
++	buf = (u8 *)&mgmt->u.action;
 +
 +	/* FCTL_PROTECTED frame might have extra space added for HDR_LEN. Offset that
 +	 * many bytes if it is there
