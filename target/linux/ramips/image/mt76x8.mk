@@ -321,6 +321,15 @@ define Device/hiwifi_hc5861b
 endef
 TARGET_DEVICES += hiwifi_hc5861b
 
+define Device/hongdian_h7920-v40
+  IMAGE_SIZE := 16064k
+  DEVICE_VENDOR := Hongdian
+  DEVICE_MODEL := H7920
+  DEVICE_VARIANT := v40
+  DEVICE_PACKAGES := kmod-usb2 kmod-usb-ohci kmod-usb-net-qmi-wwan kmod-usb-serial-option uqmi
+endef
+TARGET_DEVICES += hongdian_h7920-v40
+
 define Device/iptime_a3
   IMAGE_SIZE := 7936k
   UIMAGE_NAME := a3
@@ -1120,6 +1129,14 @@ define Device/xiaomi_mi-router-4c
   DEVICE_PACKAGES := uboot-envtools
 endef
 TARGET_DEVICES += xiaomi_mi-router-4c
+
+define Device/xiaomi_miwifi-3a
+  IMAGE_SIZE := 16064k
+  DEVICE_VENDOR := Xiaomi
+  DEVICE_MODEL := MiWiFi 3A
+  DEVICE_PACKAGES := kmod-mt76x2
+endef
+TARGET_DEVICES += xiaomi_miwifi-3a
 
 define Device/xiaomi_miwifi-3c
   IMAGE_SIZE := 15104k
