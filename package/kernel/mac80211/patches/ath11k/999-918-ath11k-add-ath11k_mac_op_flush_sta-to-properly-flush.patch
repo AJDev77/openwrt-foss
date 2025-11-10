@@ -42,7 +42,7 @@ Signed-off-by: Florian Maurer <f.maurer@outlook.de>
 +	struct ath11k_vif *arvif = (void *)vif->drv_priv;
 +	struct ath11k *ar = hw->priv;
 +	struct peer_flush_params params = {
-+		.peer_tid_bitmap = 0xFFFF,
++		.peer_tid_bitmap = 0xFF,
 +		.vdev_id = arvif->vdev_id,
 +	};
 +	int ret;
